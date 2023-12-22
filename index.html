@@ -21,7 +21,9 @@
       <img src="images/bg-main-mobile.png" alt="background mobile">
     </div>
     <img src="images/bg-card-back.png" alt="card back" class="card-back">
-    <img src="images/bg-card-front.png" alt="card front" class="card-front">
+    <div class="card-front__container">
+      <img src="images/bg-card-front.png" alt="card front" class="card-front">
+    </div>
   </section>
   <form class="main-form">
     <div class="main-form__input-container">
@@ -33,17 +35,19 @@
       <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 000">
     </div>
     <div class="main-form__input-container-flex">
-      <div>
-        <label for="exp-date">exp. date</label>
-        <input type="text" id="exp-date" placeholder="MM">
+      <div class="date-container">
+        <div>
+          <label for="exp-date">exp. date</label>
+          <input type="text" id="exp-date" placeholder="MM">
+        </div>
+        <div>
+          <label for="date">(MM/YY)</label>
+          <input type="text" id="date" placeholder="YY">
+        </div>
       </div>
-      <div>
-        <label for="date">(MM/YY)</label>
-        <input type="text" id="date" placeholder="YY">
-      </div>
-      <div>
+      <div class="cvc-container">
         <label for="cvc">cvc</label>
-        <input type="text" id="cvc" placeholder="">
+        <input type="text" id="cvc" placeholder="e.g. 123">
       </div>
     </div>
     <button>Confirm</button>
