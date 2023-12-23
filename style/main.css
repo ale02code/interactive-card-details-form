@@ -12,7 +12,7 @@
 }
 
 .section-card {
-  height: 35%;
+  height: 40%;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -31,8 +31,8 @@
 .card-front__container {
   position: absolute;
   bottom: 0;
-  height: 67%;
-  width: 75%;
+  height: 55%;
+  width: 80%;
   left: 20px;
   z-index: 20;
 }
@@ -42,24 +42,43 @@
   width: 100%;
 }
 
-.card-back {
+.card-back__container {
   position: absolute;
   z-index: 20;
-  height: 67%;
-  width: 75%;
+  height: 55%;
+  width: 80%;
   top: 25px;
   right: 20px;
 }
 
+.cvc-back__container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.cvc-back {
+  padding: 2rem;
+  color: var(--Light-grayish-violet);
+}
+
+.card-back {
+  width: 100%;
+  height: 100%;
+}
+
 .main-form {
-  height: 65%;
+  height: 60%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.1rem;
+  gap: 1rem;
   align-items: center;
-  padding: 0 25px;
+  padding: 1.5rem 25px;
 }
 
 .main-form__input-container {
@@ -77,7 +96,7 @@ input,
 button {
   width: 100%;
   outline: none;
-  padding: 8px;
+  padding: 1rem;
   border: none;
   border: var(--Light-grayish-violet) 1px solid;
   border-radius: 8px;
@@ -100,7 +119,7 @@ button:hover {
 }
 
 .date-container {
-  width: 55%;
+  width: 58%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,5 +127,63 @@ button:hover {
 }
 
 .cvc-container {
-  width: 42%;
+  width: 40%;
+}
+
+.card-front__container__information_card {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.burbles {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  height: 50%;
+  width: 100%
+}
+
+.bubble-fill {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.bubble-not-fill {
+  width: 20px;
+  height: 20px;
+  top: 18%;
+  left: 32%;
+  border: solid #fff 2px;
+  border-radius: 50%;
+}
+
+.card-front__container__information_card__content-info {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  color: var(--Light-grayish-violet);
+}
+
+.card-front__container__information_card__content-info__footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-number-content {
+  font-size: 22px;
 }
