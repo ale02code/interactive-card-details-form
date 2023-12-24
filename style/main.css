@@ -1,4 +1,5 @@
 :root {
+  --Red: hsl(0, 100%, 66%);
   --white: #ffffff;
   --Light-grayish-violet: #dedddf;
   --Dark-grayish-violet: #8e8593;
@@ -102,6 +103,14 @@ button {
   border-radius: 8px;
 }
 
+.cardholder-name-border {
+  width: 100%;
+  height: 69%;
+  padding: 1px;
+  background: linear-gradient(to right, #6448fe, #600594);
+  border-radius: 9px;
+}
+
 button {
   background-color: var(--very-dark-violet);
   color: var(--Light-grayish-violet);
@@ -186,4 +195,8 @@ button:hover {
 
 .card-number-content {
   font-size: 22px;
+}
+
+.input-error {
+  border: var();
 }

@@ -13,12 +13,12 @@ const monthAndYear = document.getElementById("mm-yy");
 const cvcInput = document.getElementById("cvc");
 const cvc = document.getElementById("cvc-back");
 
+const formMain = document.getElementById("main-form");
+const nameTargetBorder = document.getElementById("cardholder-name-border");
+
 nameTargetFrontInput.addEventListener('change', () => {
-  if (nameTargetFrontInput.value.length <= 15) {
+  if (nameTargetFrontInput.value.length <= 15)
     return nameTargetFront.textContent = nameTargetFrontInput.value;
-  } else {
-    // !TODO i will make a function to handle errors
-  }
 })
 
 cardNumberFrontInput.addEventListener("change", () => {
@@ -36,8 +36,6 @@ cardNumberFrontInput.addEventListener("change", () => {
       formattedNumbersTarget += cardNumberWithoutSpaces[i];
     }
     return cardNumberFront.textContent = formattedNumbersTarget;
-  } else {
-    // !TODO i will make a function to handle errors
   }
 })
 
@@ -53,3 +51,25 @@ monthAndYearInput.addEventListener("change", () => {
 cvcInput.addEventListener("change", () => {
   return cvc.textContent = cvcInput.value;
 })
+
+const errorStyle = (input) => {
+  input.classList.add("input-error");
+}
+
+formMain.addEventListener("submit", (event) => {
+  event.preventDefault()
+
+  if (nameTargetFrontInput.value === "") {
+    errorStyle(nameTargetFrontInput)
+  } else if (cardNumberFrontInput.value === "") {
+    cardNumberFrontInput.style.border = "#f11 1px solid"
+  }
+})
+
+nameTargetFrontInput.addEventListener("focus", () => {
+  nameTargetBorder.classList.add("cardholder-name-border");
+});
+
+nameTargetFrontInput.addEventListener("blur", () => {
+  nameTargetBorder.classList.remove("cardholder-name-border")
+});
