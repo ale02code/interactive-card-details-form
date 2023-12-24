@@ -39,14 +39,16 @@ const errorStyle = (border, father, textError) => {
 }
 
 // *Interactivity with targets
+let errorNumber = null;
 nameTargetFrontInput.addEventListener('input', (event) => {
   const valueInputName = event.target.value;
   const valueWithoutLetters = valueInputName.replace(/\d/g, '');
 
   if (valueInputName !== valueWithoutLetters) {
-    return errorStyle(nameTargetFrontInput, nameCardContainer, "The numbers are not valid here")
+    return errorNumber = true;
   } else {
-    return nameTargetFront.textContent = nameTargetFrontInput.value;
+    nameTargetFront.textContent = nameTargetFrontInput.value;
+    return errorNumber = false;
   }
 })
 
@@ -92,6 +94,8 @@ formMain.addEventListener("submit", (event) => {
 
   if (nameTargetFrontInput.value === "") {
     return errorStyle(nameTargetFrontInput, nameCardContainer, "Field Empty");
+  } else if (errorNumber === true) {
+    errorStyle(nameTargetFrontInput, nameCardContainer, "The numbers are not valid here");
   } else if (cardNumberFrontInput.value === "") {
     return errorStyle(cardNumberFrontInput, numbersCardContainer, "Field Empty");
   } else if (cardNumberFrontInput.value.length > 16 || cardNumberFrontInput.value.length < 16) {
