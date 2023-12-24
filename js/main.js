@@ -14,14 +14,43 @@ const cvcInput = document.getElementById("cvc");
 const cvc = document.getElementById("cvc-back");
 
 const formMain = document.getElementById("main-form");
-const nameTargetBorder = document.getElementById("cardholder-name-border");
 
-nameTargetFrontInput.addEventListener('change', () => {
-  if (nameTargetFrontInput.value.length <= 15)
+const nameTargetBorder = document.getElementById("cardholder-name-border");
+const numberTargetBorder = document.getElementById("card-number-border");
+const ExpDateTargetBorder = document.getElementById("card-exp-date");
+const DateTargetBorder = document.getElementById("card-date");
+const CvcTargetBorder = document.getElementById("cvc-border");
+
+const nameCardContainer = document.getElementById("name-card");
+const numbersCardContainer = document.getElementById("numbers-card");
+const expCardContainer = document.getElementById("exp-card");
+const dateCardContainer = document.getElementById("date-card");
+const cvcCardContainer = document.getElementById("cvc-card");
+
+// *Errors
+const errorParagraph = document.createElement('p');
+
+const errorStyle = (border, father, textError) => {
+  border.classList.add("input-error");
+  errorParagraph.classList.add("error-paragraph");
+  errorParagraph.style.display = "block";
+  errorParagraph.textContent = textError;
+  father.appendChild(errorParagraph);
+}
+
+// *Interactivity with targets
+nameTargetFrontInput.addEventListener('input', (event) => {
+  const valueInputName = event.target.value;
+  const valueWithoutLetters = valueInputName.replace(/\d/g, '');
+
+  if (valueInputName !== valueWithoutLetters) {
+    return errorStyle(nameTargetFrontInput, nameCardContainer, "The numbers are'not valid here")
+  } else {
     return nameTargetFront.textContent = nameTargetFrontInput.value;
+  }
 })
 
-cardNumberFrontInput.addEventListener("change", () => {
+cardNumberFrontInput.addEventListener("input", () => {
   const cardNumberValue = cardNumberFrontInput.value;
   const cardNumberWithoutSpaces = cardNumberValue.replace(/\s/g, '');
 
@@ -35,41 +64,69 @@ cardNumberFrontInput.addEventListener("change", () => {
 
       formattedNumbersTarget += cardNumberWithoutSpaces[i];
     }
-    return cardNumberFront.textContent = formattedNumbersTarget;
+
+    cardNumberFront.textContent = formattedNumbersTarget;
+  } else {
+    cardNumberFront.textContent = "XXXX XXXX XXXX XXXX";
   }
 })
 
-expDateInput.addEventListener("change", () => {
+expDateInput.addEventListener("input", () => {
   return expDate.textContent = expDateInput.value;
 })
 
-monthAndYearInput.addEventListener("change", () => {
+monthAndYearInput.addEventListener("input", () => {
   return monthAndYear.textContent = monthAndYearInput.value;
 })
 
 
-cvcInput.addEventListener("change", () => {
+cvcInput.addEventListener("input", () => {
   return cvc.textContent = cvcInput.value;
 })
 
-const errorStyle = (input) => {
-  input.classList.add("input-error");
-}
-
+// *Error inputs
 formMain.addEventListener("submit", (event) => {
   event.preventDefault()
 
+  errorParagraph.remove();
+
   if (nameTargetFrontInput.value === "") {
-    errorStyle(nameTargetFrontInput)
+    return errorStyle(nameTargetFrontInput, nameCardContainer, "Field Empty");
   } else if (cardNumberFrontInput.value === "") {
-    cardNumberFrontInput.style.border = "#f11 1px solid"
+    return errorStyle(cardNumberFrontInput, numbersCardContainer, "Field Empty");
+  } else if (cardNumberFrontInput.value.length > 16 || cardNumberFrontInput.value.length < 16) {
+    return errorStyle(cardNumberFrontInput, numbersCardContainer, "the numbers are 16");
+  } else if (expDateInput.value === "") {
+    return errorStyle(expDateInput, expCardContainer, "Field Empty");
+  } else if (expDateInput.value.length !== 2) {
+    return errorStyle(expDateInput, expCardContainer, "2 numbers");
+  } else if (monthAndYearInput.value === "") {
+    return errorStyle(monthAndYearInput, dateCardContainer, "Field Empty");
+  } else if (monthAndYearInput.value.length !== 2) {
+    return errorStyle(monthAndYearInput, dateCardContainer, "2 numbers");
+  } else if (cvcInput.value === "") {
+    return errorStyle(cvcInput, cvcCardContainer, "Field Empty");
+  } else if (cvcInput.value.length !== 3) {
+    return errorStyle(cvcInput, cvcCardContainer, "3 numbers")
   }
 })
 
-nameTargetFrontInput.addEventListener("focus", () => {
-  nameTargetBorder.classList.add("cardholder-name-border");
-});
+// *linear-gradient and replace borders
+function handleFocusAndBlur(inputElement, borderElement) {
+  inputElement.addEventListener("focus", () => {
+    borderElement.classList.add("cardholder-name-border");
+    inputElement.classList.remove("input-error");
+  });
 
-nameTargetFrontInput.addEventListener("blur", () => {
-  nameTargetBorder.classList.remove("cardholder-name-border")
-});
+  inputElement.addEventListener("blur", () => {
+    inputElement.classList.remove("input-error");
+    borderElement.classList.remove("cardholder-name-border");
+  });
+}
+
+
+handleFocusAndBlur(nameTargetFrontInput, nameTargetBorder);
+handleFocusAndBlur(cardNumberFrontInput, numberTargetBorder);
+handleFocusAndBlur(expDateInput, ExpDateTargetBorder);
+handleFocusAndBlur(monthAndYearInput, DateTargetBorder);
+handleFocusAndBlur(cvcInput, CvcTargetBorder);
