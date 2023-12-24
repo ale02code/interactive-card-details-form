@@ -22,7 +22,7 @@
     </div>
     <div class="card-back__container">
       <div class="cvc-back__container">
-        <p class="cvc-back">000</p>
+        <p class="cvc-back" id="cvc-back">000</p>
       </div>
       <img src="images/bg-card-back.png" alt="card back" class="card-back">
     </div>
@@ -33,24 +33,25 @@
           <div class="bubble-not-fill"></div>
         </div>
         <section class="card-front__container__information_card__content-info">
-          <p class="card-number-content">0000 0000 0000 0000</p>
+          <p class="card-number-content" id="card-number-content">0000 0000 0000 0000</p>
           <footer class="card-front__container__information_card__content-info__footer">
-            <p id="name-target-front">Jane Applessed</p>
-            <p>00/00</p>
+            <p id="name-target-front">Card Name</p>
+            <p><span id="exp-date-front">00</span>/<span id="mm-yy">00</span></p>
           </footer>
         </section>
       </div>
       <img src="images/bg-card-front.png" alt="card front" class="card-front">
     </div>
   </section>
-  <form class="main-form">
+
+  <form class="main-form" autocomplete="off">
     <div class="main-form__input-container">
       <label for="cardholder-name">cardholder name</label>
-      <input type="text" id="cardholder-name" placeholder="e.g Jane Appleseed">
+      <input type="text" id="cardholder-name" placeholder="e.g Jane Appleseed" maxlength="15">
     </div>
     <div class="main-form__input-container">
       <label for="card-number">card number</label>
-      <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 000">
+      <input type="text" id="card-number" placeholder="e.g 1234 5678 9123 000" maxlength="16">
     </div>
     <div class="main-form__input-container-flex">
       <div class="date-container">
