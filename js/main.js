@@ -44,7 +44,7 @@ nameTargetFrontInput.addEventListener('input', (event) => {
   const valueWithoutLetters = valueInputName.replace(/\d/g, '');
 
   if (valueInputName !== valueWithoutLetters) {
-    return errorStyle(nameTargetFrontInput, nameCardContainer, "The numbers are'not valid here")
+    return errorStyle(nameTargetFrontInput, nameCardContainer, "The numbers are not valid here")
   } else {
     return nameTargetFront.textContent = nameTargetFrontInput.value;
   }
