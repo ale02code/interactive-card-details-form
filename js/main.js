@@ -1,4 +1,6 @@
 "use strict"
+
+// *get Elements
 const nameTargetFront = document.getElementById("name-target-front");
 const nameTargetFrontInput = document.getElementById("cardholder-name");
 
@@ -74,17 +76,60 @@ cardNumberFrontInput.addEventListener("input", () => {
 })
 
 expDateInput.addEventListener("input", () => {
-  return expDate.textContent = expDateInput.value;
+  const expValueText = expDateInput.value;
+
+  if (expValueText < 10) {
+    return expDate.textContent = `0${expValueText}`;
+  } else {
+    expDate.textContent = expValueText;
+  }
 })
 
 monthAndYearInput.addEventListener("input", () => {
-  return monthAndYear.textContent = monthAndYearInput.value;
-})
+  const dateValueText = monthAndYearInput.value;
 
+  if (dateValueText < 10) {
+    return monthAndYear.textContent = `0${dateValueText}`;
+  } else {
+    monthAndYear.textContent = dateValueText;
+  }
+})
 
 cvcInput.addEventListener("input", () => {
   return cvc.textContent = cvcInput.value;
 })
+
+// *Create success section
+const createSuccessSection = () => {
+  const sectionSuccess = document.createElement('section');
+  sectionSuccess.classList.add("success-section");
+
+  const imageSuccess = document.createElement('img');
+  imageSuccess.src = "../images/icon-complete.svg";
+
+  const divTextContainer = document.createElement('div');
+  divTextContainer.classList.add("text-thanks-container")
+
+  const titleThanks = document.createElement('h3');
+  titleThanks.textContent = "thank you!";
+
+  const paragraphThanks = document.createElement('p');
+  paragraphThanks.textContent = "we've added your card details";
+
+  const ButtonMissed = document.createElement('button');
+  ButtonMissed.textContent = "Continue";
+
+  ButtonMissed.addEventListener('click', () => {
+    sectionSuccess.remove(sectionSuccess);
+  })
+
+  formMain.appendChild(sectionSuccess);
+  sectionSuccess.appendChild(imageSuccess);
+  sectionSuccess.appendChild(divTextContainer);
+  divTextContainer.appendChild(titleThanks);
+  divTextContainer.appendChild(paragraphThanks);
+  sectionSuccess.appendChild(ButtonMissed);
+}
 
 // *Error inputs
 formMain.addEventListener("submit", (event) => {
@@ -108,10 +153,14 @@ formMain.addEventListener("submit", (event) => {
     return errorStyle(monthAndYearInput, dateCardContainer, "Field Empty");
   } else if (monthAndYearInput.value.length !== 2) {
     return errorStyle(monthAndYearInput, dateCardContainer, "2 numbers");
+  } else if (monthAndYearInput.value >= 13) {
+    return errorStyle(monthAndYearInput, dateCardContainer, "Month invalid");
   } else if (cvcInput.value === "") {
     return errorStyle(cvcInput, cvcCardContainer, "Field Empty");
   } else if (cvcInput.value.length !== 3) {
     return errorStyle(cvcInput, cvcCardContainer, "3 numbers")
+  } else {
+    createSuccessSection();
   }
 })
 
@@ -127,7 +176,6 @@ function handleFocusAndBlur(inputElement, borderElement) {
     borderElement.classList.remove("cardholder-name-border");
   });
 }
-
 
 handleFocusAndBlur(nameTargetFrontInput, nameTargetBorder);
 handleFocusAndBlur(cardNumberFrontInput, numberTargetBorder);
