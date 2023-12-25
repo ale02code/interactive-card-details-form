@@ -51,6 +51,7 @@
   width: 80%;
   top: 25px;
   right: 20px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .4);
 }
 
 .cvc-back__container {
@@ -165,6 +166,8 @@ button:hover {
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, .4);
+  border-radius: 8px;
 }
 
 .burbles {
@@ -258,4 +261,68 @@ button:hover {
 .success-section button {
   width: 90%;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 520px) {
+  .body {
+    display: flex;
+  }
+
+  .section-card {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .section-card__background img {
+    height: 100%;
+    width: 72%;
+  }
+
+  .card-front__container {
+    border-radius: 8px;
+  }
+
+  .card-front__container {
+    max-width: 300px;
+    max-height: 200px;
+    z-index: 10;
+    inset: unset;
+    top: 20%;
+    right: 15%;
+  }
+
+  .card-back__container {
+    border-radius: 8px;
+  }
+
+  .card-back__container {
+    max-width: 300px;
+    max-height: 200px;
+    z-index: 10;
+    inset: unset;
+    top: 55%;
+    right: 2%;
+  }
+
+  .main-form {
+    height: 100%;
+    width: 50%;
+  }
+
+  .maxWith {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 72%;
+    height: 100%;
+  }
+
+  .success-section {
+    width: 100%;
+    height: 100%;
+  }
 }
