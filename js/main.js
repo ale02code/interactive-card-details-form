@@ -151,8 +151,6 @@ formMain.addEventListener("submit", (event) => {
     return errorStyle(expDateInput, expCardContainer, "2 numbers");
   } else if (monthAndYearInput.value === "") {
     return errorStyle(monthAndYearInput, dateCardContainer, "Field Empty");
-  } else if (monthAndYearInput.value.length !== 2) {
-    return errorStyle(monthAndYearInput, dateCardContainer, "2 numbers");
   } else if (monthAndYearInput.value >= 13) {
     return errorStyle(monthAndYearInput, dateCardContainer, "Month invalid");
   } else if (cvcInput.value === "") {
